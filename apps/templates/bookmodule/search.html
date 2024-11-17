@@ -1,0 +1,42 @@
+{% extends "bookmodule/layouts/base.html" %}
+{% load static %}
+
+{% block title %} Searching Page {% endblock title %}
+
+{% block stylesheets %}
+<style>
+    .searchForm {
+        margin-top: 20px;
+    }
+    .results {
+        margin-top: 20px;
+    }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<form class="searchForm" method="post" action="">
+    {% csrf_token %}
+    <label>Keywords:</label>
+    <input type="text" name="keyword" placeholder="Enter a keyword"/>
+    <br/>
+
+    <label>Search in:</label>
+    <input type="checkbox" name="option1"/><label>Title</label>
+    <input type="checkbox" name="option2"/><label>Author</label>
+    <br/>
+
+    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+</form>
+
+{% if books %}
+<div class="results">
+    <h2>Search Results:</h2>
+    <ul>
+        {% for book in books %}
+        <li>{{ book.title }} by {{ book.author }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+{% endblock content %}

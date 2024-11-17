@@ -1,0 +1,166 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+/* General link styling for all links */
+.custom-link {
+    display: block;           /* Each link takes up its own line */
+    padding: 30px;            /* Padding inside the links */
+    text-align: center;       /* Center the text */
+    font-weight: bold;        /* Make text bold */
+    width: 100%;              /* Full width to stack links */
+    margin: 0 auto; /* Center horizontally and remove vertical spacing */
+}
+
+/* Specific styling for each link */
+.link1 {
+    color: red;                /* Red text */
+    background-color: #cbf1c9; /* Light green background */
+}
+
+.link2 {
+    background-color: #555;    /* Dark gray background */
+    color: yellow;             /* Yellow text */
+}
+
+.link3 {
+    background-color: black;   /* Black background */
+    color: white;              /* White text */
+}
+/* Link states */
+a:link {
+    color: inherit;            /* Unvisited link inherits its color */
+}
+/* Link states */
+a:visited {
+    color: #0c05e2;
+}
+
+.custom-link:hover {
+    background-color: #d42a6e;
+}
+
+.custom-link:active {
+    background-color: #09e935;   
+}
+
+
+
+/* formatting page */
+
+/* Style for the h1 tag */
+.formatting-title {
+    background-color: #eef0e4;  /* Light background color  #eef0e4  */
+    padding: 20px 40px;
+    text-align: left;  /* Align text to the left */
+    color: #6a823a;  /* Change text color to match the example */
+    /* border: 1px solid #ddd;  Light border */
+    border : none;
+    width: auto;  /* Make it wider */
+    margin:  auto;
+    font-size: 40px;  /* Adjust font size */
+    font-weight: bold;  /* Make text bold */
+    /* border-radius: 5px; */
+}
+
+/* Style for the formatting examples */
+.formatting-examples {
+    padding: 0;
+    margin: 0 auto;
+    width: auto;
+    background-color: transparent;
+    border: none ;
+    /* border-radius: 5px; */
+    text-align: left;  /* Align text to the left */
+    font-size: 25px;  /* Adjust font size */
+}
+
+/* Adjust spacing and colors for paragraphs */
+.formatting-examples p {
+    margin: 19px 0;
+}
+
+/* Specific formatting for <mark> tag */
+mark {
+    background-color: #ffff88;  /* Light yellow background */
+    color: #333;  /* Text color */
+}
+
+
+/* listing page */
+/* Style for the h1 title in the listing page */
+.listing-title {
+    background-color: #688b92;  /* Blue-green background */
+    padding: 20px 40px;
+    text-align: left;  /* left align the text */
+    color: white;  /* White text */
+    border-radius: 5px;
+    font-size: 28px;  /* Larger font size */
+    font-weight: bold;  /* Bold text */
+    width: 90%;
+    margin: 20px auto;  /* Center the title with margins */
+}
+
+/* Style for the unordered and ordered lists */
+.main-list {
+    width: 90%;  /* Increase width to push it closer to the left */
+    margin: 20px auto;  /* Center the list */
+    font-size: 18px;  /* Font size for list items */
+    line-height: 1.8;  /* Line height for readability */
+    list-style-position: outside;  /* Ensure bullets/numbers are outside the text */
+    text-align: left;  /* Align the text to the left */
+}
+
+/* Unordered list (hollow bullets) */
+.main-list ul {
+    list-style-type: circle;  /* Hollow circles for unordered lists */
+    margin-left: 10px;  /* Reduce indentation for unordered lists */
+}
+
+/* Ordered list (numbered) */
+.main-list ol {
+    list-style-type: decimal;  /* Numbers for ordered lists */
+    margin-left: 30px;  /* Reduce indentation for ordered lists */
+}
+
+/* Styling for nested unordered lists */
+.main-list ul ul {
+    list-style-type: circle;  /* Keep hollow circles for nested unordered lists */
+    margin-left: 10px;
+}
+
+/* Styling for nested ordered lists */
+.main-list ol ol {
+    list-style-type: lower-alpha;  /* Lowercase alphabet for nested ordered lists */
+    margin-left: 30px;
+}
+
+/* Additional spacing for list items */
+.main-list li {
+    margin-bottom: 10px;  /* Add space between list items */
+}
+
+/* Styling for table page  */
+
+
+
+table.table1, th, td{
+    border: 1px solid; /* Border around the table */
+    margin: 20px auto;  /* Centers the table horizontally */}
+
+.table1 caption {
+        font-weight: bold;
+}
+
+table.table2 {
+    margin: 20px auto;  /* Centers the table horizontally */
+    border-collapse: collapse;
+    font-size: 18px;
+   
+}
+
+
+

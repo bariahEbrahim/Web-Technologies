@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Default Title{% endblock %}</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'qu-icon.png' %}">
+    <!-- <link rel="stylesheet" href="{% static 'bookmodule/css/styles.css' %}"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    {% include "bookmodule/includes/header.html" %}
+
+    <main>
+        {% block content %}
+        <!-- Page-specific content will be inserted here -->
+        {% endblock %}
+    </main>
+
+    {% include "bookmodule/includes/footer.html" %}
+</body>
+</html>
