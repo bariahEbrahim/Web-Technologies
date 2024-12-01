@@ -1,4 +1,4 @@
-from django.urls import path # type: ignore
+from django.urls import path  # type: ignore
 from . import views  # Import the views from the current directory
 
 urlpatterns = [
@@ -15,4 +15,6 @@ urlpatterns = [
     path('one_book/', views.one_book, name="books.one_book"),  # Static path for one_book
     path('aboutus/', views.aboutus, name="books.aboutus"),
     path('search', views.search_books, name='search_books'), #lap6  
+    path('simple/query', views.simple_query, name='simple_query'), #lap7
+    path('complex/query’ ', views.lookup_query, name='lookup_query'), #lap7
 ]

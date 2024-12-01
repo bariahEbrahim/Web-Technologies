@@ -1,7 +1,6 @@
 from django.shortcuts import render # type: ignore
-# Create your views here.
 from django.http import HttpResponse # type: ignore
-
+from .models import Book
 # def index(request):
 #     name = request.GET.get("name") or "world!" #add this line
 #     return render(request, "bookmodule/index.html" , {"name": name}) #your render line
@@ -83,4 +82,28 @@ def __getBooksList():
         {'id': 43211234, 'title': 'The Hundred-Page Machine Learning Book', 'author': 'Andriy Burkov'},
     ]
 
+def simple_query(request):
+    mybooks = Book.objects.filter(title__icontains='and')
+    # mybooks = Book.objects.all()
+    return render(request, 'bookmodule/list_books.html', {'books': mybooks})
 
+# def lookup_query(request):
+#     mybooks=books=Book.objects.filter(author__isnull =
+#     False).filter(title__icontains='and').filter(edition__gte = 2).exclude(price__lte = 100)[:10]
+#     if len(mybooks)>=1:
+#         return render(request, 'bookmodule/list_books.html', {'books':mybooks})
+#     else:
+#         return render(request, 'bookmodule/index.html')
+
+def lookup_query(request):
+    # Complex query
+    mybooks = Book.objects.filter(
+        author__isnull=False,
+        title__icontains='and',
+        edition__gte=2
+    ).exclude(price__lte=100)[:10]
+
+    if len(mybooks) >= 1:
+        return render(request, 'bookmodule/bookList.html', {'books': mybooks})
+    else:
+        return render(request, 'bookmodule/index.html')

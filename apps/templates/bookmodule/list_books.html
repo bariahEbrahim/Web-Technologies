@@ -24,4 +24,37 @@
 <h2>3) Images in Another Folder</h2>
 <img src="{% static 'bookmodule/images/book3.jpeg' %}" alt="book3 img desc" width="200" height="200">
 <hr>
+
+<!-- Dynamic Content from the Database -->
+<h2>Dynamic Book List</h2>
+{% for obj in books %}
+    ID: {{obj.id}}, Title: {{obj.title}}
+    <!-- <p>
+        <strong>ID:</strong> {{ obj.id }}<br>
+        <strong>Title:</strong> {{ obj.title }}<br>
+        <strong>Author:</strong> {{ obj.author }}<br>
+        <strong>Price:</strong> {{ obj.price }}<br>
+        <strong>Edition:</strong> {{ obj.edition }}
+    </p> -->
+    <hr>
+{% endfor %}
+
+<!-- Complex Query Results -->
+<h2>Books Matching Complex Query</h2>
+{% if books %}
+    <ul>
+        {% for book in books %}
+        <li>
+            <strong>Title:</strong> {{ book.title }}<br>
+            <strong>Author:</strong> {{ book.author }}<br>
+            <strong>Price:</strong> ${{ book.price }}<br>
+            <strong>Edition:</strong> {{ book.edition }}
+        </li>
+        <hr>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No books match the query.</p>
+{% endif %}
+
 {% endblock content %}
