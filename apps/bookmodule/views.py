@@ -1,6 +1,45 @@
 from django.shortcuts import render # type: ignore
 from django.http import HttpResponse # type: ignore
 from .models import Book
+from django.db.models import Q #lab 8
+from django.db.models import Count, Sum, Avg, Max, Min #lab 8 task 5
+from django.db.models import Count #lab 8 task 7
+from .models import Address, Student
+
+
+
+#lab 8
+def task1(request):
+    books = Book.objects.filter(Q(price__lte=50))  # Price <= 50
+    return render(request, 'bookmodule/task1.html', {'books': books})
+
+def task2(request):
+    books = Book.objects.filter(Q(edition__gt=2) & (Q(title__icontains='qu') | Q(author__icontains='qu')))
+    return render(request, 'bookmodule/task2.html', {'books': books})
+
+def task3(request):
+    books = Book.objects.filter(~Q(edition__gt=2) & ~Q(title__icontains='qu') & ~Q(author__icontains='qu'))
+    return render(request, 'bookmodule/task3.html', {'books': books})
+
+def task4(request):
+    books = Book.objects.order_by('title')
+    return render(request, 'bookmodule/task4.html', {'books': books})
+
+
+def task5(request):
+    stats = Book.objects.aggregate(
+        total_books=Count('id'),
+        total_price=Sum('price'),
+        average_price=Avg('price'),
+        max_price=Max('price'),
+        min_price=Min('price')
+    )
+    return render(request, 'bookmodule/task5.html', {'stats': stats})
+
+def task7(request):
+    stats = Address.objects.annotate(student_count=Count('student'))
+    return render(request, 'bookmodule/task7.html', {'stats': stats})
+
 # def index(request):
 #     name = request.GET.get("name") or "world!" #add this line
 #     return render(request, "bookmodule/index.html" , {"name": name}) #your render line

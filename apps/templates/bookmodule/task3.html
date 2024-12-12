@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Books with Editions less then 2 and Title/Author does not contain "qu"</title>
+</head>
+<body>
+    <h1>Filtered Books</h1>
+    <ul>
+        {% for book in books %}
+        <li>{{ book.title }} by {{ book.author }} - Edition: {{ book.edition }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
