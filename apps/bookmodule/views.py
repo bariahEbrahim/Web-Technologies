@@ -85,7 +85,7 @@ def __getBooksList():
 def simple_query(request):
     mybooks = Book.objects.filter(title__icontains='and')
     # mybooks = Book.objects.all()
-    return render(request, 'bookmodule/list_books.html', {'books': mybooks})
+    return render(request, 'bookmodule/bookList.html', {'books': mybooks,'query_type': 'simple'})
 
 # def lookup_query(request):
 #     mybooks=books=Book.objects.filter(author__isnull =
@@ -102,8 +102,7 @@ def lookup_query(request):
         title__icontains='and',
         edition__gte=2
     ).exclude(price__lte=100)[:10]
-
     if len(mybooks) >= 1:
-        return render(request, 'bookmodule/bookList.html', {'books': mybooks})
+        return render(request, 'bookmodule/lookup.html', {'books': mybooks, 'query_type': 'complex'})
     else:
         return render(request, 'bookmodule/index.html')
