@@ -1,11 +1,56 @@
-from django.shortcuts import render # type: ignore
+from django.shortcuts import render, redirect # type: ignore
 from django.http import HttpResponse # type: ignore
 from .models import Book
 from django.db.models import Q #lab 8
 from django.db.models import Count, Sum, Avg, Max, Min #lab 8 task 5
 from django.db.models import Count #lab 8 task 7
-from .models import Address, Student
+from .models import Address
+from .forms import BookForm
 
+#lab 9 part 2
+
+def add_book_form(request):
+    if request.method == 'POST':
+        form = BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('list_book')
+    else:
+        form = BookForm()
+    return render(request, 'bookmodule/add_book_form.html', {'form': form})
+
+
+#lab 9 part 1
+def list_book(request):
+    books = Book.objects.all()
+    return render(request, 'bookmodule/lab9_task1.html', {'books': books})
+
+def add_book(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        author = request.POST.get('author')
+        price = request.POST.get('price')
+        edition = request.POST.get('edition')
+        Book.objects.create(title=title, author=author, price=price, edition=edition)
+        return redirect('list_book')
+    return render(request, 'bookmodule/add_book.html')
+
+
+def edit_book(request, id):
+    book = Book.objects.get(id=id)
+    if request.method == 'POST':
+        book.title = request.POST.get('title')
+        book.author = request.POST.get('author')
+        book.price = request.POST.get('price')
+        book.edition = request.POST.get('edition')
+        book.save()
+        return redirect('list_book')
+    return render(request, 'bookmodule/edit_book.html', {'book': book})
+
+def delete_book(request, id):
+    book = Book.objects.get(id=id)
+    book.delete()
+    return redirect('list_book')
 
 
 #lab 8
