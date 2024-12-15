@@ -1,11 +1,67 @@
-from django.shortcuts import render, redirect # type: ignore
+from django.shortcuts import render, redirect, get_object_or_404# type: ignore
 from django.http import HttpResponse # type: ignore
 from .models import Book
 from django.db.models import Q #lab 8
 from django.db.models import Count, Sum, Avg, Max, Min #lab 8 task 5
 from django.db.models import Count #lab 8 task 7
-from .models import Address
-from .forms import BookForm
+# from .models import Address, Student
+from .models import Student2 , Address2, Gallery
+
+# from .forms import BookForm, StudentForm, AddressForm
+from .forms import BookForm, Student2Form ,GalleryForm#, Address2Form
+
+#LAB 10 TASK 3
+# Display all uploaded images
+def gallery_view(request):
+    images = Gallery.objects.all()
+    return render(request, 'bookmodule/gallery.html', {'images': images})
+
+
+def upload_image(request):
+    if request.method == 'POST':
+        form = GalleryForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('gallery')
+    else:
+        form = GalleryForm()
+    return render(request, 'bookmodule/upload_image.html', {'form': form})
+
+
+#lab 10
+# List all students
+def list_students(request):
+    students = Student2.objects.all()
+    return render(request, 'bookmodule/list_students.html', {'students': students})
+
+# Add a new student
+def add_student(request):
+    if request.method == 'POST':
+        form = Student2Form(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('list_students')
+    else:
+        form = Student2Form()
+    return render(request, 'bookmodule/add_student.html', {'form': form})
+
+# Update a student
+def update_student(request, id):
+    student = get_object_or_404(Student2, id=id)
+    if request.method == 'POST':
+        form = Student2Form(request.POST, instance=student)
+        if form.is_valid():
+            form.save()
+            return redirect('list_students')
+    else:
+        form = Student2Form(instance=student)
+    return render(request, 'bookmodule/update_student.html', {'form': form})
+
+# Delete a student
+def delete_student(request, id):
+    student = get_object_or_404(Student2, id=id)
+    student.delete()
+    return redirect('list_students')
 
 #lab 9 part 2
 
@@ -81,9 +137,9 @@ def task5(request):
     )
     return render(request, 'bookmodule/task5.html', {'stats': stats})
 
-def task7(request):
-    stats = Address.objects.annotate(student_count=Count('student'))
-    return render(request, 'bookmodule/task7.html', {'stats': stats})
+# def task7(request):
+#     stats = Address.objects.annotate(student_count=Count('student'))
+#     return render(request, 'bookmodule/task7.html', {'stats': stats})
 
 # def index(request):
 #     name = request.GET.get("name") or "world!" #add this line
